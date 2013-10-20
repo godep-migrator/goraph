@@ -3,6 +3,7 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -27,7 +28,7 @@ func main() {
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
 
 	http.Handle("/", router)
-	if err := http.ListenAndServe(":8000", router); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("PORT"), router); err != nil {
 		panic(err)
 	}
 }
