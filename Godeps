@@ -2,6 +2,6 @@
         "ImportPath": "github.com/Acnnair/goraph",
         "GoVersion": "go version go1.1.2 darwin/amd64",
         "Deps": [
-        	"github.com/gorilla/mux"
+            "github.com/gorilla/mux"
         ]
 }
