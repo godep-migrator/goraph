@@ -23,6 +23,7 @@ func (ctrl *Controller) HomeHandler(writer http.ResponseWriter, request *http.Re
 		"name": "home",
 	})
 }
+var port string = "8000"
 
 func main() {
 
@@ -33,7 +34,11 @@ func main() {
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
 
 	http.Handle("/", router)
-	if err := http.ListenAndServe(":"+os.Getenv("PORT"), router); err != nil {
+
+	if os.Getenv("PORT") != "" {
+		port = os.Getenv("PORT")
+	}
+	if err := http.ListenAndServe(":"+port, router); err != nil {
 		panic(err)
 	}
 }
