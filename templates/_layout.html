@@ -6,10 +6,33 @@
 	<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-
-	{{ template "content" . }}
+	<div class="container">
+		<div class="page-header">
+			<h1>Goraph</h1>
+			<p class="lead">Body measurements graphing app written in Go language.</p>
+		</div>
+		{{ template "content" . }}
+	</div>
 
 	<script src="//code.jquery.com/jquery.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/chart.min.js"></script>
+	<script type="text/javascript">
+	var exampleData = {
+		labels : ["January","February","March","April","May","June","July"],
+		datasets : [
+			{
+				fillColor : "rgba(151,187,205,0.2)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : [28,48,40,19,96,27,100]
+			}
+		]
+	}
+
+		var weightChart = new Chart($("#weightChart").get(0).getContext("2d"));
+		weightChart.Line(exampleData)
+	</script>
 </body>
 </html>
