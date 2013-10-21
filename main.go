@@ -15,6 +15,7 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", ctrl.HomeHandler).Name("home")
+	router.HandleFunc("/submit", ctrl.FormHandler).Name("submit")
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
 
 	http.Handle("/", router)

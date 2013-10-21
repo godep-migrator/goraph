@@ -23,3 +23,7 @@ func (ctrl *Controller) HomeHandler(writer http.ResponseWriter, request *http.Re
 		"name": "home",
 	})
 }
+
+func (ctrl *Controller) FormHandler(writer http.ResponseWriter, request *http.Request) {
+	http.Redirect(writer, request, "/", http.StatusFound)
+}
