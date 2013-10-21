@@ -1,28 +1,12 @@
 package main
 
 import (
-	"html/template"
 	"net/http"
 	"os"
 
 	"github.com/gorilla/mux"
 )
 
-type Controller struct {
-}
-
-func (ctrl *Controller) HomeHandler(writer http.ResponseWriter, request *http.Request) {
-
-	templates := template.New("_layout.html")
-	templates = template.Must(templates.ParseFiles(
-		"templates/_layout.html",
-		"templates/index.html",
-	))
-
-	templates.Execute(writer, map[string]interface{}{
-		"name": "home",
-	})
-}
 var port string = "8000"
 
 func main() {
