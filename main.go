@@ -8,7 +8,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func HomeHandler(writer http.ResponseWriter, request *http.Request) {
+type Controller struct {
+}
+
+func (ctrl *Controller) HomeHandler(writer http.ResponseWriter, request *http.Request) {
 
 	templates := template.New("_layout.html")
 	templates = template.Must(templates.ParseFiles(
@@ -23,8 +26,10 @@ func HomeHandler(writer http.ResponseWriter, request *http.Request) {
 
 func main() {
 
+	ctrl := new(Controller)
+
 	router := mux.NewRouter()
-	router.HandleFunc("/", HomeHandler).Name("home")
+	router.HandleFunc("/", ctrl.HomeHandler).Name("home")
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("static/"))))
 
 	http.Handle("/", router)
